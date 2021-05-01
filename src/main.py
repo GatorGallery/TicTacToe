@@ -8,7 +8,7 @@ print("testing 123")
 import PySimpleGUI as sg
 
 # Creating the layout for the window
-layout = [[sg.Text("Tic-Tac-Toe")], [sg.Button("EXIT")]]
+layout = [[sg.Text("Tic-Tac-Toe")], [sg.Button("1"), sg.Button("2"), sg.Button("3")], [sg.Button("4")], [sg.Button("EXIT")]]
 
 # Creating the window
 window = sg.Window("TicTacToe", layout)
