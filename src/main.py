@@ -10,7 +10,7 @@ import PySimpleGUI as sg
 # Setting Theme
 sg.theme('BrightColors')
 
-xPiece = 'xPiece.png'
+xPiece = '../images/xPiece.png'
 yPiece = '../images/yPiece.png'
 
 # Creating the layout for the window
