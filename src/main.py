@@ -4,11 +4,12 @@
 
 # This will hold the GUI, User input, and other main features.
 
-print("testing 123")
+print("Starting...")
 import PySimpleGUI as sg
 
 # Creating the layout for the window
-layout = [[sg.Text("Tic-Tac-Toe")], [sg.Button("1"), sg.Button("2"), sg.Button("3")], [sg.Button("4")], [sg.Button("EXIT")]]
+layout = [[sg.Text("Tic-Tac-Toe")], [sg.Button("1"), sg.Button("2"), sg.Button("3")], [sg.Button("4"),
+            sg.Button("5"), sg.Button("6")], [sg.Button("7"), sg.Button("8"), sg.Button("9")], [sg.Button("EXIT")]]
 
 # Creating the window
 window = sg.Window("TicTacToe", layout)
