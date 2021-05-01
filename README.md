@@ -9,3 +9,9 @@ To install [PySimpleGUI](https://pysimplegui.readthedocs.io/en/latest/) run:
 ```
 python -m pip install pysimplegui
 ```
+
+To start the program run:
+
+```
+python src/main.py
+```
