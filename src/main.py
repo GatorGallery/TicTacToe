@@ -19,9 +19,17 @@ yPiece = './images/yPiece.png'
 emptyPiece = './images/emptyPiece.png'
 
 # Creating the layout for the window
-layout = [[sg.Text("Tic-Tac-Toe")], [sg.Button(image_filename=emptyPiece, image_size=(100, 100), image_subsample=2,  key='1'),
- sg.Button("2"), sg.Button("3")], [sg.Button("4"),
-            sg.Button("5"), sg.Button("6")], [sg.Button("7"), sg.Button("8"), sg.Button("9")], [sg.Button("EXIT")]]
+layout = [[sg.Text("Tic-Tac-Toe")],
+ [sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '1'),
+ sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '2'),
+ sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '3')],
+ [sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '4'),
+ sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '5'),
+ sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '6')],
+ [sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '7'),
+ sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '8'),
+ sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '9')],
+ [sg.Button("EXIT")]]
 
 # Creating the window
 window = sg.Window("TicTacToe", layout)
