@@ -34,6 +34,9 @@ layout = [[sg.Text("Tic-Tac-Toe")],
 # Creating the window
 window = sg.Window("TicTacToe", layout)
 
+# counter variable to determine which player is taking their turn.
+turnCounter = 2
+
 # Create an event loop while the window is open
 while True:
     event, values = window.read()
@@ -43,6 +46,11 @@ while True:
         break
 
     if event == "1":
-        window.FindElement('1').Update(image_filename=xPiece, image_size=(100, 100))
+        if (turnCounter % 2 == 0):
+            window.FindElement('1').Update(image_filename = xPiece, image_size = (100, 100))
+            turnCounter = turnCounter + 1
+        else:
+            window.FindElement('1').Update(image_filename = yPiece, image_size = (100, 100))
+            turnCounter = turnCounter + 1
 
 window.close()
