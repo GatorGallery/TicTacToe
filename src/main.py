@@ -48,82 +48,82 @@ while True:
     # Button 1 is clicked
     if event == "1":
         if (turnCounter % 2 == 0):
-            window.FindElement('1').Update(image_filename = xPiece, image_size = (100, 100), disabled = true)
+            window.FindElement('1').Update(image_filename = xPiece, image_size = (100, 100), disabled = True)
             turnCounter = turnCounter + 1
         else:
-            window.FindElement('1').Update(image_filename = yPiece, image_size = (100, 100))
+            window.FindElement('1').Update(image_filename = yPiece, image_size = (100, 100), disabled = True)
             turnCounter = turnCounter + 1
 
     # Button 2 is clicked
     if event == "2":
         if (turnCounter % 2 == 0):
-            window.FindElement('2').Update(image_filename = xPiece, image_size = (100, 100))
+            window.FindElement('2').Update(image_filename = xPiece, image_size = (100, 100), disabled = True)
             turnCounter = turnCounter + 1
         else:
-            window.FindElement('2').Update(image_filename = yPiece, image_size = (100, 100))
+            window.FindElement('2').Update(image_filename = yPiece, image_size = (100, 100), disabled = True)
             turnCounter = turnCounter + 1
 
     # Button 3 is clicked
     if event == "3":
         if (turnCounter % 2 == 0):
-            window.FindElement('3').Update(image_filename = xPiece, image_size = (100, 100))
+            window.FindElement('3').Update(image_filename = xPiece, image_size = (100, 100), disabled = True)
             turnCounter = turnCounter + 1
         else:
-            window.FindElement('3').Update(image_filename = yPiece, image_size = (100, 100))
+            window.FindElement('3').Update(image_filename = yPiece, image_size = (100, 100), disabled = True)
             turnCounter = turnCounter + 1
 
     # Button 4 is clicked
     if event == "4":
         if (turnCounter % 2 == 0):
-            window.FindElement('4').Update(image_filename = xPiece, image_size = (100, 100))
+            window.FindElement('4').Update(image_filename = xPiece, image_size = (100, 100), disabled = True)
             turnCounter = turnCounter + 1
         else:
-            window.FindElement('4').Update(image_filename = yPiece, image_size = (100, 100))
+            window.FindElement('4').Update(image_filename = yPiece, image_size = (100, 100), disabled = True)
             turnCounter = turnCounter + 1
 
     # Button 5 is clicked
     if event == "5":
         if (turnCounter % 2 == 0):
-            window.FindElement('5').Update(image_filename = xPiece, image_size = (100, 100))
+            window.FindElement('5').Update(image_filename = xPiece, image_size = (100, 100), disabled = True)
             turnCounter = turnCounter + 1
         else:
-            window.FindElement('5').Update(image_filename = yPiece, image_size = (100, 100))
+            window.FindElement('5').Update(image_filename = yPiece, image_size = (100, 100), disabled = True)
             turnCounter = turnCounter + 1
 
     # Button 6 is clicked
     if event == "6":
         if (turnCounter % 2 == 0):
-            window.FindElement('6').Update(image_filename = xPiece, image_size = (100, 100))
+            window.FindElement('6').Update(image_filename = xPiece, image_size = (100, 100), disabled = True)
             turnCounter = turnCounter + 1
         else:
-            window.FindElement('6').Update(image_filename = yPiece, image_size = (100, 100))
+            window.FindElement('6').Update(image_filename = yPiece, image_size = (100, 100), disabled = True)
             turnCounter = turnCounter + 1
 
     # Button 7 is clicked
     if event == "7":
         if (turnCounter % 2 == 0):
-            window.FindElement('7').Update(image_filename = xPiece, image_size = (100, 100))
+            window.FindElement('7').Update(image_filename = xPiece, image_size = (100, 100), disabled = True)
             turnCounter = turnCounter + 1
         else:
-            window.FindElement('7').Update(image_filename = yPiece, image_size = (100, 100))
+            window.FindElement('7').Update(image_filename = yPiece, image_size = (100, 100), disabled = True)
             turnCounter = turnCounter + 1
 
     # Button 8 is clicked
     if event == "8":
         if (turnCounter % 2 == 0):
-            window.FindElement('8').Update(image_filename = xPiece, image_size = (100, 100))
+            window.FindElement('8').Update(image_filename = xPiece, image_size = (100, 100), disabled = True)
             turnCounter = turnCounter + 1
         else:
-            window.FindElement('8').Update(image_filename = yPiece, image_size = (100, 100))
+            window.FindElement('8').Update(image_filename = yPiece, image_size = (100, 100), disabled = True)
             turnCounter = turnCounter + 1
 
     # Button 9 is clicked
     if event == "9":
         if (turnCounter % 2 == 0):
-            window.FindElement('9').Update(image_filename = xPiece, image_size = (100, 100))
+            window.FindElement('9').Update(image_filename = xPiece, image_size = (100, 100), disabled = True)
             turnCounter = turnCounter + 1
         else:
-            window.FindElement('9').Update(image_filename = yPiece, image_size = (100, 100))
+            window.FindElement('9').Update(image_filename = yPiece, image_size = (100, 100), disabled = True)
             turnCounter = turnCounter + 1
 
     # "CLEAR" is clicked
