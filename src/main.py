@@ -125,5 +125,5 @@ while True:
         else:
             window.FindElement('9').Update(image_filename = yPiece, image_size = (100, 100))
             turnCounter = turnCounter + 1
-
+            
 window.close()
