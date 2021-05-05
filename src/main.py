@@ -48,7 +48,7 @@ while True:
     # Button 1 is clicked
     if event == "1":
         if (turnCounter % 2 == 0):
-            window.FindElement('1').Update(image_filename = xPiece, image_size = (100, 100))
+            window.FindElement('1').Update(image_filename = xPiece, image_size = (100, 100), disabled = true)
             turnCounter = turnCounter + 1
         else:
             window.FindElement('1').Update(image_filename = yPiece, image_size = (100, 100))
@@ -125,7 +125,7 @@ while True:
         else:
             window.FindElement('9').Update(image_filename = yPiece, image_size = (100, 100))
             turnCounter = turnCounter + 1
-    
+
     # "CLEAR" is clicked
     if event == "CLEAR":
         window.FindElement('1').Update(image_filename = emptyPiece, image_size = (100, 100))
@@ -137,5 +137,5 @@ while True:
         window.FindElement('7').Update(image_filename = emptyPiece, image_size = (100, 100))
         window.FindElement('8').Update(image_filename = emptyPiece, image_size = (100, 100))
         window.FindElement('9').Update(image_filename = emptyPiece, image_size = (100, 100))
-            
+
 window.close()
