@@ -29,8 +29,7 @@ layout = [[sg.Text("Tic-Tac-Toe")],
  [sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '7'),
  sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '8'),
  sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '9')],
- [sg.Button("EXIT")],
- [sg.Button("CLEAR")]]
+ [sg.Button("EXIT"),sg.Button("CLEAR")]]
 
 # Creating the window
 window = sg.Window("TicTacToe", layout)
