@@ -19,18 +19,25 @@ yPiece = './images/yPiece.png'
 emptyPiece = './images/emptyPiece.png'
 
 # Creating the layout for the window
-layout = [[sg.Text("Tic-Tac-Toe")],
- [sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '1'),
- sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '2'),
- sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '3')],
- [sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '4'),
- sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '5'),
- sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '6')],
- [sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '7'),
- sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '8'),
- sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '9')],
- [sg.Button("EXIT"),sg.Button("CLEAR")]]
+layout1 = [[sg.Text("Tic-Tac-Toe Main Menu")],
+        [sg.Button("2 Player")],
+        [sg.Button("VS Computer (easy)")],
+        [sg.Button("VS Computer (hard)")]]
 
+layout2 = [[sg.Text("Tic-Tac-Toe")],
+        [sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '1'),
+        sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '2'),
+        sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '3')],
+        [sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '4'),
+        sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '5'),
+        sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '6')],
+        [sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '7'),
+        sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '8'),
+        sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '9')],
+        [sg.Button("CLEAR")]]
+
+layout = [[sg.Column(layout1, key='-COL1-'), sg.Column(layout2, visible=False, key='-COL2-')],
+        [sg.Button("EXIT")]]
 # Creating the window
 window = sg.Window("TicTacToe", layout)
 
@@ -44,6 +51,10 @@ while True:
     # presses the Exit button
     if event == "EXIT" or event == sg.WIN_CLOSED:
         break
+
+    if event == '2 Player':
+        window[f'-COL1-'].update(visible=False)
+        window[f'-COL2-'].update(visible=True)
 
     # Button 1 is clicked
     if event == "1":
