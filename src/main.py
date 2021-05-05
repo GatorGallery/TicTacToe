@@ -29,7 +29,8 @@ layout = [[sg.Text("Tic-Tac-Toe")],
  [sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '7'),
  sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '8'),
  sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '9')],
- [sg.Button("EXIT")]]
+ [sg.Button("EXIT")],
+ [sg.Button("CLEAR")]]
 
 # Creating the window
 window = sg.Window("TicTacToe", layout)
@@ -125,5 +126,17 @@ while True:
         else:
             window.FindElement('9').Update(image_filename = yPiece, image_size = (100, 100))
             turnCounter = turnCounter + 1
+    
+    # "CLEAR" is clicked
+    if event == "CLEAR":
+        window.FindElement('1').Update(image_filename = emptyPiece, image_size = (100, 100))
+        window.FindElement('2').Update(image_filename = emptyPiece, image_size = (100, 100))
+        window.FindElement('3').Update(image_filename = emptyPiece, image_size = (100, 100))
+        window.FindElement('4').Update(image_filename = emptyPiece, image_size = (100, 100))
+        window.FindElement('5').Update(image_filename = emptyPiece, image_size = (100, 100))
+        window.FindElement('6').Update(image_filename = emptyPiece, image_size = (100, 100))
+        window.FindElement('7').Update(image_filename = emptyPiece, image_size = (100, 100))
+        window.FindElement('8').Update(image_filename = emptyPiece, image_size = (100, 100))
+        window.FindElement('9').Update(image_filename = emptyPiece, image_size = (100, 100))
             
 window.close()
