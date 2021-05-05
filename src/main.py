@@ -34,7 +34,7 @@ layout2 = [[sg.Text("Tic-Tac-Toe")],
         [sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '7'),
         sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '8'),
         sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '9')],
-        [sg.Button("CLEAR")]]
+        [sg.Button("CLEAR"), sg.Button("Main Menu")]]
 
 layout = [[sg.Column(layout1, key='-COL1-'), sg.Column(layout2, visible=False, key='-COL2-')],
         [sg.Button("EXIT")]]
@@ -148,5 +148,10 @@ while True:
         window.FindElement('7').Update(image_filename = emptyPiece, image_size = (100, 100))
         window.FindElement('8').Update(image_filename = emptyPiece, image_size = (100, 100))
         window.FindElement('9').Update(image_filename = emptyPiece, image_size = (100, 100))
+
+    if event == "Main Menu":
+        window[f'-COL2-'].update(visible=False)
+        window[f'-COL1-'].update(visible=True)
+
 
 window.close()
