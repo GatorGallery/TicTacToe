@@ -87,7 +87,7 @@ def computerAction():
     if gameMode == 'VS Computer (easy)':
         randomAI()
     if gameMode == 'VS Computer (hard)':
-        miniMaxAI()
+        minimaxAI()
 
 # Random opponent turn AI
 def randomAI():
@@ -131,7 +131,7 @@ def minimax(board, isMaximizing):
         return 0
 
     # Our opponent 'O' is represented when maximizing
-    if isMaximizing():
+    if isMaximizing:
         bestScore = -100
         for key in theBoard.keys():
             if(theBoard[key] == ' '):
