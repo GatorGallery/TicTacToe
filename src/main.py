@@ -17,7 +17,7 @@ sg.theme('BrightColors')
 
 # piece image variables, to be assigned to buttons
 xPiece = './images/xPiece.png'
-yPiece = './images/yPiece.png'
+oPiece = './images/oPiece.png'
 emptyPiece = './images/emptyPiece.png'
 
 # Creating the layout for the window
@@ -56,6 +56,7 @@ theBoard = {'1': ' ' , '2': ' ' , '3': ' ' ,
             '7': ' ' , '8': ' ' , '9': ' ' }
 
 def playerAction(event):
+    """Function containing possible player actions, also calls for computer action"""
     global turnCounter
     if event in ['1','2','3','4','5','6','7','8','9']:
         if (turnCounter % 2 == 0):
@@ -64,25 +65,30 @@ def playerAction(event):
             turnCounter += 1
 
         else:
-            window.FindElement(event).Update(image_filename = yPiece, image_size = (100, 100), disabled = True)
+            window.FindElement(event).Update(image_filename = oPiece, image_size = (100, 100), disabled = True)
             theBoard[event] = 'O'
             turnCounter = turnCounter + 1
         computerAction()
 
-def randomAI():
-    global turnCounter
-    available = [k for (k,v) in theBoard.items() if v == ' ']
-    if len(available) > 0:
-        randstr = choice(available)
-        window.FindElement(randstr).Update(image_filename = yPiece, image_size = (100, 100), disabled = True)
-        theBoard[randstr] = 'O'
-        turnCounter += 1
-
 def computerAction():
+    """Wrapper for both types of VS AI action"""
     if gameMode == 'VS Computer (easy)':
         randomAI()
     # if gameMode == 'VS Computer (hard)':
     #     miniMaxAI()
+
+def randomAI():
+    """The 'easy' game mode, computer selects random blank space to fill"""
+    global turnCounter
+    # searches theBoard for empty spaces, puts them into the 'available' list
+    available = [k for (k,v) in theBoard.items() if v == ' ']
+    if len(available) > 0:
+        randstr = choice(available) # random choice from the list of options
+        window.FindElement(randstr).Update(image_filename = oPiece, image_size = (100, 100), disabled = True)
+        theBoard[randstr] = 'O'
+        turnCounter += 1
+
+
 
 # Create an event loop while the window is open
 while True:
@@ -100,7 +106,7 @@ while True:
     # Buttons are clicked
     playerAction(event)
     
-    # Now we will check if player X or O has won,for every move after 5 moves.
+    # Check if a player has won,for every move after 5 moves (minimum to win).
     if turnCounter >= 5:
             if theBoard['7'] == theBoard['8'] == theBoard['9'] != ' ': # across the top
                 window.FindElement('title').Update("Game Over")
@@ -124,7 +130,7 @@ while True:
                 window.FindElement('0').Update(visible=True)
 
 
-    # "CLEAR" is clicked
+    # "CLEAR" is clicked, the entire game is reset
     if event == "CLEAR":
         for i in range(1,10):
             s = str(i)
