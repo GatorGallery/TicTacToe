@@ -10,6 +10,8 @@ print("Starting...")
 # GUI will be built using PySimpleGUI
 import PySimpleGUI as sg
 
+from random import choice
+
 # Setting Theme
 sg.theme('BrightColors')
 
@@ -42,6 +44,9 @@ layout = [[sg.Column(layout1, key='-COL1-'), sg.Column(layout2, visible=False, k
 # Creating the window
 window = sg.Window("TicTacToe", layout)
 
+# Creating the game mode state
+gameMode = "menu"
+
 # counter variable to determine which player is taking their turn.
 turnCounter = 0
 
@@ -49,6 +54,35 @@ turnCounter = 0
 theBoard = {'1': ' ' , '2': ' ' , '3': ' ' ,
             '4': ' ' , '5': ' ' , '6': ' ' ,
             '7': ' ' , '8': ' ' , '9': ' ' }
+
+def playerAction(event):
+    global turnCounter
+    if event in ['1','2','3','4','5','6','7','8','9']:
+        if (turnCounter % 2 == 0):
+            window.FindElement(event).Update(image_filename = xPiece, image_size = (100, 100), disabled = True)
+            theBoard[event] = 'X'
+            turnCounter += 1
+
+        else:
+            window.FindElement(event).Update(image_filename = yPiece, image_size = (100, 100), disabled = True)
+            theBoard[event] = 'O'
+            turnCounter = turnCounter + 1
+        computerAction()
+
+def randomAI():
+    global turnCounter
+    available = [k for (k,v) in theBoard.items() if v == ' ']
+    if len(available) > 0:
+        randstr = choice(available)
+        window.FindElement(randstr).Update(image_filename = yPiece, image_size = (100, 100), disabled = True)
+        theBoard[randstr] = 'O'
+        turnCounter += 1
+
+def computerAction():
+    if gameMode == 'VS Computer (easy)':
+        randomAI()
+    # if gameMode == 'VS Computer (hard)':
+    #     miniMaxAI()
 
 # Create an event loop while the window is open
 while True:
@@ -58,21 +92,13 @@ while True:
     if event == "EXIT" or event == sg.WIN_CLOSED:
         break
 
-    if event == '2 Player':
+    if gameMode == 'menu' and event in ['2 Player','VS Computer (easy)', 'VS Computer (hard)']:
         window[f'-COL1-'].update(visible=False)
         window[f'-COL2-'].update(visible=True)
+        gameMode = event
 
-    # Button 1 is clicked
-    if event in ['1','2','3','4','5','6','7','8','9']:
-        if (turnCounter % 2 == 0):
-            window.FindElement(event).Update(image_filename = xPiece, image_size = (100, 100), disabled = True)
-            theBoard[event] = 'X'
-            turnCounter = turnCounter + 1
-
-        else:
-            window.FindElement(event).Update(image_filename = yPiece, image_size = (100, 100), disabled = True)
-            theBoard[event] = 'O'
-            turnCounter = turnCounter + 1
+    # Buttons are clicked
+    playerAction(event)
     
     # Now we will check if player X or O has won,for every move after 5 moves.
     if turnCounter >= 5:
@@ -92,17 +118,21 @@ while True:
                 window.FindElement('title').Update("Game Over")
             elif theBoard['1'] == theBoard['5'] == theBoard['9'] != ' ': # diagonal
                 window.FindElement('title').Update("Game Over")
+            # If neither X nor O wins and the board is full, we'll declare the result as 'tie'.
+            elif turnCounter == 9:
+                window.FindElement('title').Update("Tie Game!")
+                window.FindElement('0').Update(visible=True)
 
-        # If neither X nor O wins and the board is full, we'll declare the result as 'tie'.
-    if turnCounter == 9:
-        window.FindElement('title').Update("Tie Game!")
-        window.FindElement('0').Update(visible=True)
 
     # "CLEAR" is clicked
     if event == "CLEAR":
         for i in range(1,10):
             s = str(i)
-            window.FindElement(s).Update(image_filename = emptyPiece, image_size = (100, 100))
+            window.FindElement(s).Update(image_filename = emptyPiece, image_size = (100, 100), disabled=False)
+        theBoard = {'1': ' ' , '2': ' ' , '3': ' ' ,
+                    '4': ' ' , '5': ' ' , '6': ' ' ,
+                    '7': ' ' , '8': ' ' , '9': ' ' }
+        turnCounter = 0
 
     if event == "Main Menu":
         window[f'-COL2-'].update(visible=False)
