@@ -24,7 +24,7 @@ layout1 = [[sg.Text("Tic-Tac-Toe Main Menu")],
         [sg.Button("VS Computer (easy)")],
         [sg.Button("VS Computer (hard)")]]
 
-layout2 = [[sg.Text("Tic-Tac-Toe")],
+layout2 = [[sg.Text("Tic-Tac-Toe", key = 'title')],
         [sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '1'),
         sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '2'),
         sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '3')],
@@ -34,7 +34,8 @@ layout2 = [[sg.Text("Tic-Tac-Toe")],
         [sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '7'),
         sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '8'),
         sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '9')],
-        [sg.Button("CLEAR"), sg.Button("Main Menu")]]
+        [sg.Button("CLEAR"), sg.Button("Main Menu")],
+        [sg.Text(text='GAME OVER',font=("Times New Roman",12), visible=False, key='0')]]
 
 layout = [[sg.Column(layout1, key='-COL1-'), sg.Column(layout2, visible=False, key='-COL2-')],
         [sg.Button("EXIT")]]
@@ -42,7 +43,12 @@ layout = [[sg.Column(layout1, key='-COL1-'), sg.Column(layout2, visible=False, k
 window = sg.Window("TicTacToe", layout)
 
 # counter variable to determine which player is taking their turn.
-turnCounter = 2
+turnCounter = 0
+
+#A dictionary to contain the board state for the program to assess
+theBoard = {'1': ' ' , '2': ' ' , '3': ' ' ,
+            '4': ' ' , '5': ' ' , '6': ' ' ,
+            '7': ' ' , '8': ' ' , '9': ' ' }
 
 # Create an event loop while the window is open
 while True:
@@ -57,85 +63,40 @@ while True:
         window[f'-COL2-'].update(visible=True)
 
     # Button 1 is clicked
-    if event == "1":
+    if event in ['1','2','3','4','5','6','7','8','9']:
         if (turnCounter % 2 == 0):
-            window.FindElement('1').Update(image_filename = xPiece, image_size = (100, 100), disabled = True)
-            turnCounter = turnCounter + 1
-        else:
-            window.FindElement('1').Update(image_filename = yPiece, image_size = (100, 100), disabled = True)
+            window.FindElement(event).Update(image_filename = xPiece, image_size = (100, 100), disabled = True)
+            theBoard[event] = 'X'
             turnCounter = turnCounter + 1
 
-    # Button 2 is clicked
-    if event == "2":
-        if (turnCounter % 2 == 0):
-            window.FindElement('2').Update(image_filename = xPiece, image_size = (100, 100), disabled = True)
-            turnCounter = turnCounter + 1
         else:
-            window.FindElement('2').Update(image_filename = yPiece, image_size = (100, 100), disabled = True)
+            window.FindElement(event).Update(image_filename = yPiece, image_size = (100, 100), disabled = True)
+            theBoard[event] = 'O'
             turnCounter = turnCounter + 1
+    
+    # Now we will check if player X or O has won,for every move after 5 moves.
+    if turnCounter >= 5:
+            if theBoard['7'] == theBoard['8'] == theBoard['9'] != ' ': # across the top
+                window.FindElement('title').Update("Game Over")
+            elif theBoard['4'] == theBoard['5'] == theBoard['6'] != ' ': # across the middle
+                window.FindElement('title').Update("Game Over")
+            elif theBoard['1'] == theBoard['2'] == theBoard['3'] != ' ': # across the bottom
+                window.FindElement('title').Update("Game Over")
+            elif theBoard['1'] == theBoard['4'] == theBoard['7'] != ' ': # down the left side
+                window.FindElement('title').Update("Game Over")
+            elif theBoard['2'] == theBoard['5'] == theBoard['8'] != ' ': # down the middle
+                window.FindElement('title').Update("Game Over")
+            elif theBoard['3'] == theBoard['6'] == theBoard['9'] != ' ': # down the right side
+                window.FindElement('title').Update("Game Over")
+            elif theBoard['7'] == theBoard['5'] == theBoard['3'] != ' ': # diagonal
+                window.FindElement('title').Update("Game Over")
+            elif theBoard['1'] == theBoard['5'] == theBoard['9'] != ' ': # diagonal
+                window.FindElement('title').Update("Game Over")
 
-    # Button 3 is clicked
-    if event == "3":
-        if (turnCounter % 2 == 0):
-            window.FindElement('3').Update(image_filename = xPiece, image_size = (100, 100), disabled = True)
-            turnCounter = turnCounter + 1
-        else:
-            window.FindElement('3').Update(image_filename = yPiece, image_size = (100, 100), disabled = True)
-            turnCounter = turnCounter + 1
-
-    # Button 4 is clicked
-    if event == "4":
-        if (turnCounter % 2 == 0):
-            window.FindElement('4').Update(image_filename = xPiece, image_size = (100, 100), disabled = True)
-            turnCounter = turnCounter + 1
-        else:
-            window.FindElement('4').Update(image_filename = yPiece, image_size = (100, 100), disabled = True)
-            turnCounter = turnCounter + 1
-
-    # Button 5 is clicked
-    if event == "5":
-        if (turnCounter % 2 == 0):
-            window.FindElement('5').Update(image_filename = xPiece, image_size = (100, 100), disabled = True)
-            turnCounter = turnCounter + 1
-        else:
-            window.FindElement('5').Update(image_filename = yPiece, image_size = (100, 100), disabled = True)
-            turnCounter = turnCounter + 1
-
-    # Button 6 is clicked
-    if event == "6":
-        if (turnCounter % 2 == 0):
-            window.FindElement('6').Update(image_filename = xPiece, image_size = (100, 100), disabled = True)
-            turnCounter = turnCounter + 1
-        else:
-            window.FindElement('6').Update(image_filename = yPiece, image_size = (100, 100), disabled = True)
-            turnCounter = turnCounter + 1
-
-    # Button 7 is clicked
-    if event == "7":
-        if (turnCounter % 2 == 0):
-            window.FindElement('7').Update(image_filename = xPiece, image_size = (100, 100), disabled = True)
-            turnCounter = turnCounter + 1
-        else:
-            window.FindElement('7').Update(image_filename = yPiece, image_size = (100, 100), disabled = True)
-            turnCounter = turnCounter + 1
-
-    # Button 8 is clicked
-    if event == "8":
-        if (turnCounter % 2 == 0):
-            window.FindElement('8').Update(image_filename = xPiece, image_size = (100, 100), disabled = True)
-            turnCounter = turnCounter + 1
-        else:
-            window.FindElement('8').Update(image_filename = yPiece, image_size = (100, 100), disabled = True)
-            turnCounter = turnCounter + 1
-
-    # Button 9 is clicked
-    if event == "9":
-        if (turnCounter % 2 == 0):
-            window.FindElement('9').Update(image_filename = xPiece, image_size = (100, 100), disabled = True)
-            turnCounter = turnCounter + 1
-        else:
-            window.FindElement('9').Update(image_filename = yPiece, image_size = (100, 100), disabled = True)
-            turnCounter = turnCounter + 1
+        # If neither X nor O wins and the board is full, we'll declare the result as 'tie'.
+    if turnCounter == 9:
+        window.FindElement('title').Update("Tie Game!")
+        window.FindElement('0').Update(visible=True)
 
     # "CLEAR" is clicked
     if event == "CLEAR":
