@@ -104,6 +104,7 @@ def randomAI():
 # Hard opponent turn
 def minimaxAI():
     """The 'hard' game mode, will utilize 'minimax()' function to determine best move"""
+    global turnCounter
     bestScore = -100
     bestMove = 0
 
@@ -117,6 +118,7 @@ def minimaxAI():
                 bestMove = key     # Updates new best move
 
     window.FindElement(bestMove).Update(image_filename = oPiece, image_size = (100, 100), disabled = True)
+    turnCounter += 1
 
 # Minimax algorithm
 def minimax(board, isMaximizing):
