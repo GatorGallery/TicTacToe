@@ -58,9 +58,9 @@ theBoard = {'7': ' ' , '8': ' ' , '9': ' ' ,
 # Prints current board start to terminal(Mainly for testing puporses.)
 def printBoard(theBoard):
     print(theBoard['7'] + '|' + theBoard['8'] + '|' + theBoard['9'])
-    print("-------")
+    print("-----")
     print(theBoard['4'] + '|' + theBoard['5'] + '|' + theBoard['6'])
-    print("-------")
+    print("-----")
     print(theBoard['1'] + '|' + theBoard['2'] + '|' + theBoard['3'])
     print("\n\n")
 
@@ -102,16 +102,18 @@ def randomAI():
         turnCounter += 1
 
 # Hard opponent turn
-""" def minimaxAI():
+def minimaxAI():
     bestScore = -100
     bestMove = 0
 
-    for key in theBoard.keys():
-        if (board[key] == ' '):
-            h
-"""
+    for key in theBoard.key():
+        if (theBoard[key] == ' '):  # Checks to see if board spot is empty
+            theBoard[key] = 'O'    # Inputs a possible turn
+            score = minimax(theBoard, False)    # To then be tested here 
+            theBoard[key] = ' '    # Resets board spot back to empty
+
 # Minimax algorithm
-# def minimax(board, isMaximizing):
+def minimax(board, isMaximizing):
 
 
 
