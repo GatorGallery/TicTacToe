@@ -27,15 +27,15 @@ layout1 = [[sg.Text("Tic-Tac-Toe Main Menu")],
         [sg.Button("VS Computer (hard)")]]
 
 layout2 = [[sg.Text("Tic-Tac-Toe", key = 'title')],
-        [sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '1'),
-        sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '2'),
-        sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '3')],
-        [sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '4'),
-        sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '5'),
-        sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '6')],
         [sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '7'),
         sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '8'),
         sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '9')],
+        [sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '4'),
+        sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '5'),
+        sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '6')],
+        [sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '1'),
+        sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '2'),
+        sg.Button(image_filename = emptyPiece, image_size = (100, 100), key = '3')],
         [sg.Button("CLEAR"), sg.Button("Main Menu")],
         [sg.Text(text='GAME OVER',font=("Times New Roman",12), visible=False, key='0')]]
 
@@ -160,9 +160,9 @@ while True:
         for i in range(1,10):
             s = str(i)
             window.FindElement(s).Update(image_filename = emptyPiece, image_size = (100, 100), disabled=False)
-        theBoard = {'1': ' ' , '2': ' ' , '3': ' ' ,
+        theBoard = {'7': ' ' , '8': ' ' , '9': ' ' ,
                     '4': ' ' , '5': ' ' , '6': ' ' ,
-                    '7': ' ' , '8': ' ' , '9': ' ' }
+                    '1': ' ' , '2': ' ' , '3': ' ' }
         turnCounter = 0
 
     if event == "Main Menu":
