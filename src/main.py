@@ -100,15 +100,9 @@ while True:
 
     # "CLEAR" is clicked
     if event == "CLEAR":
-        window.FindElement('1').Update(image_filename = emptyPiece, image_size = (100, 100))
-        window.FindElement('2').Update(image_filename = emptyPiece, image_size = (100, 100))
-        window.FindElement('3').Update(image_filename = emptyPiece, image_size = (100, 100))
-        window.FindElement('4').Update(image_filename = emptyPiece, image_size = (100, 100))
-        window.FindElement('5').Update(image_filename = emptyPiece, image_size = (100, 100))
-        window.FindElement('6').Update(image_filename = emptyPiece, image_size = (100, 100))
-        window.FindElement('7').Update(image_filename = emptyPiece, image_size = (100, 100))
-        window.FindElement('8').Update(image_filename = emptyPiece, image_size = (100, 100))
-        window.FindElement('9').Update(image_filename = emptyPiece, image_size = (100, 100))
+        for i in range(1,10):
+            s = str(i)
+            window.FindElement(s).Update(image_filename = emptyPiece, image_size = (100, 100))
 
     if event == "Main Menu":
         window[f'-COL2-'].update(visible=False)
