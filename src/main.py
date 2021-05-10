@@ -113,13 +113,37 @@ def minimaxAI():
             score = minimax(theBoard, False)    # To then be tested here
             theBoard[key] = ' '    # Resets board spot back to empty
             if (score > bestScore):
-                bestScore = score
-                bestMove = key
+                bestScore = score  # Updates new best score
+                bestMove = key     # Updates new best move
 
     window.FindElement(bestMove).Update(image_filename = oPiece, image_size = (100, 100), disabled = True)
 
 # Minimax algorithm
 def minimax(board, isMaximizing):
+    return(nothing yet)
+
+def checkWhoWon(y):
+    """Checks to see if the given player, x or o has won"""
+    if theBoard['7'] == theBoard['8'] == theBoard['9'] == xo:
+        return True
+    elif theBoard['4'] == theBoard['5'] == theBoard['6'] == xo:
+        return True
+    elif theBoard['1'] == theBoard['2'] == theBoard['3'] == xo:
+        return True
+    elif theBoard['1'] == theBoard['4'] == theBoard['7'] == xo:
+        return True
+    elif theBoard['2'] == theBoard['5'] == theBoard['8'] == xo:
+        return True
+    elif theBoard['3'] == theBoard['6'] == theBoard['9'] == xo:
+        return True
+    elif theBoard['7'] == theBoard['5'] == theBoard['3'] == xo:
+        return True
+    elif theBoard['1'] == theBoard['5'] == theBoard['9'] == xo:
+        return True
+    else:
+        return Falses
+
+
 
 
 
