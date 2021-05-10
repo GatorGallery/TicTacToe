@@ -74,9 +74,10 @@ def computerAction():
     """Wrapper for both types of VS AI action"""
     if gameMode == 'VS Computer (easy)':
         randomAI()
-    # if gameMode == 'VS Computer (hard)':
-    #     miniMaxAI()
+    if gameMode == 'VS Computer (hard)':
+        miniMaxAI()
 
+# Random opponent turn AI
 def randomAI():
     """The 'easy' game mode, computer selects random blank space to fill"""
     global turnCounter
@@ -87,6 +88,10 @@ def randomAI():
         window.FindElement(randstr).Update(image_filename = oPiece, image_size = (100, 100), disabled = True)
         theBoard[randstr] = 'O'
         turnCounter += 1
+
+# Hard opponent turn using minimax algorithm.    
+def minimaxAI():
+
 
 
 
@@ -105,7 +110,7 @@ while True:
 
     # Buttons are clicked
     playerAction(event)
-    
+
     # Check if a player has won,for every move after 5 moves (minimum to win).
     if turnCounter >= 5:
             if theBoard['7'] == theBoard['8'] == theBoard['9'] != ' ': # across the top
