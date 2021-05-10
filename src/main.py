@@ -55,6 +55,16 @@ theBoard = {'7': ' ' , '8': ' ' , '9': ' ' ,
             '4': ' ' , '5': ' ' , '6': ' ' ,
             '1': ' ' , '2': ' ' , '3': ' ' }
 
+# Prints current board start to terminal(Mainly for testing puporses.)
+def printBoard(theBoard):
+    print(theBoard['7'] + '|' + theBoard['8'] + '|' + theBoard['9'])
+    print("-------")
+    print(theBoard['4'] + '|' + theBoard['5'] + '|' + theBoard['6'])
+    print("-------")
+    print(theBoard['1'] + '|' + theBoard['2'] + '|' + theBoard['3'])
+    print("\n\n")
+
+
 def playerAction(event):
     """Function containing possible player actions, also calls for computer action"""
     global turnCounter
@@ -63,11 +73,13 @@ def playerAction(event):
             window.FindElement(event).Update(image_filename = xPiece, image_size = (100, 100), disabled = True)
             theBoard[event] = 'X'
             turnCounter += 1
+            printBoard(theBoard)
 
         else:
             window.FindElement(event).Update(image_filename = oPiece, image_size = (100, 100), disabled = True)
             theBoard[event] = 'O'
             turnCounter = turnCounter + 1
+            printBoard(theBoard)
         computerAction()
 
 def computerAction():
@@ -89,9 +101,17 @@ def randomAI():
         theBoard[randstr] = 'O'
         turnCounter += 1
 
-# Hard opponent turn using minimax algorithm.    
-def minimaxAI():
+# Hard opponent turn
+""" def minimaxAI():
+    bestScore = -100
+    bestMove = 0
 
+    for key in theBoard.keys():
+        if (board[key] == ' '):
+            h
+"""
+# Minimax algorithm
+# def minimax(board, isMaximizing):
 
 
 
