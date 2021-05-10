@@ -51,9 +51,9 @@ gameMode = "menu"
 turnCounter = 0
 
 #A dictionary to contain the board state for the program to assess
-theBoard = {'1': ' ' , '2': ' ' , '3': ' ' ,
+theBoard = {'7': ' ' , '8': ' ' , '9': ' ' ,
             '4': ' ' , '5': ' ' , '6': ' ' ,
-            '7': ' ' , '8': ' ' , '9': ' ' }
+            '1': ' ' , '2': ' ' , '3': ' ' }
 
 def playerAction(event):
     """Function containing possible player actions, also calls for computer action"""
