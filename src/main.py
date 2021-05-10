@@ -130,6 +130,7 @@ def minimax(board, isMaximizing):
     elif checkIfDraw():
         return 0
 
+    # Our opponent 'O' is represented when maximizing
     if isMaximizing():
         bestScore = -100
         for key in theBoard.keys():
@@ -142,6 +143,7 @@ def minimax(board, isMaximizing):
 
         return bestScore
 
+    # Our opponent's simulation of our possible turns in resprented when minimizing
     else:
         bestScore = 100
         for key in theBoard.keys():
@@ -149,9 +151,10 @@ def minimax(board, isMaximizing):
                 theBoard[key] = 'X'   # Tests for the potential player move
                 currentScore = minimax(theBoard, True) # Now that it is minimizing sets true,
                 theBoard[key] = ' '
-                if (currentScore < bestScore):
+                if (currentScore < bestScore): # Looking for the lowest score now
                     bestScore = currentScore
 
+        return bestScore
 
 def checkWhoWon(y):
     """Checks to see if the given player, x or o has won"""
