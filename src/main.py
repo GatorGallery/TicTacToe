@@ -141,7 +141,7 @@ def checkWhoWon(y):
     elif theBoard['1'] == theBoard['5'] == theBoard['9'] == xo:
         return True
     else:
-        return Falses
+        return False
 
 
 
