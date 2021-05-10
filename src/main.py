@@ -110,20 +110,48 @@ def minimaxAI():
     for key in theBoard.keys():
         if (theBoard[key] == ' '):  # Checks to see if board spot is empty
             theBoard[key] = 'O'    # Inputs a possible turn
-            score = minimax(theBoard, False)    # To then be tested here
+            currentScore = minimax(theBoard, False)    # To then be tested here
             theBoard[key] = ' '    # Resets board spot back to empty
-            if (score > bestScore):
-                bestScore = score  # Updates new best score
+            if (currentScore > bestScore):
+                bestScore = currentScore  # Updates new best score
                 bestMove = key     # Updates new best move
 
     window.FindElement(bestMove).Update(image_filename = oPiece, image_size = (100, 100), disabled = True)
 
 # Minimax algorithm
 def minimax(board, isMaximizing):
+    """The minimax algorithm used with the above minimaxAI function"""
     if checkWhoWon('O'):
         return 10
-    if checkWhoWon('X'):
+
+    elif checkWhoWon('X'):
         return -10
+
+    elif checkIfDraw():
+        return 0
+
+    if isMaximizing():
+        bestScore = -100
+        for key in theBoard.keys():
+            if(theBoard[key] == ' '):
+                theBoard[key] = 'O'
+                currentScore = minimax(theBoard, False)
+                theBoard[key] = ' '
+                if (currentScore > bestScore):
+                    bestScore = currentScore
+
+        return bestScore
+
+    else:
+        bestScore = 100
+        for key in theBoard.keys():
+            if (theBoard[key] == ' '):
+                theBoard[key] = 'X'   # Tests for the potential player move
+                currentScore = minimax(theBoard, True) # Now that it is minimizing sets true,
+                theBoard[key] = ' '
+                if (currentScore < bestScore):
+                    bestScore = currentScore
+
 
 def checkWhoWon(y):
     """Checks to see if the given player, x or o has won"""
