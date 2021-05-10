@@ -107,7 +107,7 @@ def minimaxAI():
     bestScore = -100
     bestMove = 0
 
-    for key in theBoard.key():
+    for key in theBoard.keys():
         if (theBoard[key] == ' '):  # Checks to see if board spot is empty
             theBoard[key] = 'O'    # Inputs a possible turn
             score = minimax(theBoard, False)    # To then be tested here
@@ -120,31 +120,38 @@ def minimaxAI():
 
 # Minimax algorithm
 def minimax(board, isMaximizing):
-    return(nothing yet)
+    if checkWhoWon('O'):
+        return 10
+    if checkWhoWon('X'):
+        return -10
 
 def checkWhoWon(y):
     """Checks to see if the given player, x or o has won"""
-    if theBoard['7'] == theBoard['8'] == theBoard['9'] == xo:
+    if theBoard['7'] == theBoard['8'] == theBoard['9'] == y:
         return True
-    elif theBoard['4'] == theBoard['5'] == theBoard['6'] == xo:
+    elif theBoard['4'] == theBoard['5'] == theBoard['6'] == y:
         return True
-    elif theBoard['1'] == theBoard['2'] == theBoard['3'] == xo:
+    elif theBoard['1'] == theBoard['2'] == theBoard['3'] == y:
         return True
-    elif theBoard['1'] == theBoard['4'] == theBoard['7'] == xo:
+    elif theBoard['1'] == theBoard['4'] == theBoard['7'] == y:
         return True
-    elif theBoard['2'] == theBoard['5'] == theBoard['8'] == xo:
+    elif theBoard['2'] == theBoard['5'] == theBoard['8'] == y:
         return True
-    elif theBoard['3'] == theBoard['6'] == theBoard['9'] == xo:
+    elif theBoard['3'] == theBoard['6'] == theBoard['9'] == y:
         return True
-    elif theBoard['7'] == theBoard['5'] == theBoard['3'] == xo:
+    elif theBoard['7'] == theBoard['5'] == theBoard['3'] == y:
         return True
-    elif theBoard['1'] == theBoard['5'] == theBoard['9'] == xo:
+    elif theBoard['1'] == theBoard['5'] == theBoard['9'] == y:
         return True
     else:
         return False
 
-
-
+def checkIfDraw():
+    """A method that checks if the move results in a draw"""
+    for key in theBoard.keys():
+        if theBoard[key] == ' ':
+            return False
+    return True
 
 
 # Create an event loop while the window is open
