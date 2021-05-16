@@ -84,10 +84,17 @@ def playerAction(event):
 
 def computerAction():
     """Wrapper for both types of VS AI action"""
+    global turnCounter
     if gameMode == 'VS Computer (easy)':
-        randomAI()
+        choice = randomAI()
     if gameMode == 'VS Computer (hard)':
-        minimaxAI()
+        choice = minimaxAI()
+    print(choice)
+    if choice != "Tie Game":
+        window.FindElement(choice).Update(image_filename = oPiece, image_size = (100, 100), disabled = True)
+        theBoard[choice] = 'O'
+        turnCounter += 1
+        
 
 # Random opponent turn AI
 def randomAI():
@@ -97,31 +104,31 @@ def randomAI():
     available = [k for (k,v) in theBoard.items() if v == ' ']
     if len(available) > 0:
         randstr = choice(available) # random choice from the list of options
-        window.FindElement(randstr).Update(image_filename = oPiece, image_size = (100, 100), disabled = True)
-        theBoard[randstr] = 'O'
-        turnCounter += 1
+        return randstr
+    else:
+        return "Tie Game"
+        
 
 # Hard opponent turn
 def minimaxAI():
     """The 'hard' game mode, will utilize 'minimax()' function to determine best move"""
-    global turnCounter
-    bestScore = -100
-    bestMove = 0
+    bestScore = -100 #a high negative number
+    bestMove = "Tie Game" #does not exist yet
 
     for key in theBoard.keys():
         if (theBoard[key] == ' '):  # Checks to see if board spot is empty
-            theBoard[key] = 'O'    # Inputs a possible turn
-            currentScore = minimax(theBoard, False)    # To then be tested here
-            theBoard[key] = ' '    # Resets board spot back to empty
+            testBoard = theBoard.copy()
+            testBoard[key] = 'O'    # Inputs a possible turn
+            currentScore = minimax(testBoard, isMaximizing = False)    # To then be tested here
+            print(currentScore)
+            # theBoard[key] = ' '    # Resets board spot back to empty
             if (currentScore > bestScore):
                 bestScore = currentScore  # Updates new best score
                 bestMove = key     # Updates new best move
-
-    window.FindElement(bestMove).Update(image_filename = oPiece, image_size = (100, 100), disabled = True)
-    turnCounter += 1
+    return bestMove
 
 # Minimax algorithm
-def minimax(board, isMaximizing):
+def minimax(board, isMaximizing, depth = 0, maxdepth = 5):
     """The minimax algorithm used with the above minimaxAI function"""
     if checkWhoWon('O'):
         return 10
@@ -131,15 +138,18 @@ def minimax(board, isMaximizing):
 
     elif checkIfDraw():
         return 0
+    
+    if depth >= maxdepth:
+        return 0
 
     # Our opponent 'O' is represented when maximizing
     if isMaximizing:
         bestScore = -100
         for key in theBoard.keys():
             if(theBoard[key] == ' '):
-                theBoard[key] = 'O'
-                currentScore = minimax(theBoard, False)
-                theBoard[key] = ' '
+                testBoard = theBoard.copy()
+                testBoard[key] = 'O'
+                currentScore = minimax(testBoard, False, depth = depth + 1, maxdepth = maxdepth)
                 if (currentScore > bestScore):
                     bestScore = currentScore
 
@@ -150,31 +160,32 @@ def minimax(board, isMaximizing):
         bestScore = 100
         for key in theBoard.keys():
             if (theBoard[key] == ' '):
-                theBoard[key] = 'X'   # Tests for the potential player move
-                currentScore = minimax(theBoard, True) # Now that it is minimizing sets true,
-                theBoard[key] = ' '
+                testBoard = theBoard.copy()
+                testBoard[key] = 'X'   # Tests for the potential player move
+                currentScore = minimax(testBoard, True, depth = depth + 1, maxdepth = maxdepth) # Now that it is minimizing sets true,
                 if (currentScore < bestScore): # Looking for the lowest score now
                     bestScore = currentScore
+        print("bestscore for X = ", bestScore)
 
         return bestScore
 
-def checkWhoWon(y):
+def checkWhoWon(player):
     """Checks to see if the given player, x or o has won"""
-    if theBoard['7'] == theBoard['8'] == theBoard['9'] == y:
+    if theBoard['7'] == theBoard['8'] == theBoard['9'] == player:
         return True
-    elif theBoard['4'] == theBoard['5'] == theBoard['6'] == y:
+    elif theBoard['4'] == theBoard['5'] == theBoard['6'] == player:
         return True
-    elif theBoard['1'] == theBoard['2'] == theBoard['3'] == y:
+    elif theBoard['1'] == theBoard['2'] == theBoard['3'] == player:
         return True
-    elif theBoard['1'] == theBoard['4'] == theBoard['7'] == y:
+    elif theBoard['1'] == theBoard['4'] == theBoard['7'] == player:
         return True
-    elif theBoard['2'] == theBoard['5'] == theBoard['8'] == y:
+    elif theBoard['2'] == theBoard['5'] == theBoard['8'] == player:
         return True
-    elif theBoard['3'] == theBoard['6'] == theBoard['9'] == y:
+    elif theBoard['3'] == theBoard['6'] == theBoard['9'] == player:
         return True
-    elif theBoard['7'] == theBoard['5'] == theBoard['3'] == y:
+    elif theBoard['7'] == theBoard['5'] == theBoard['3'] == player:
         return True
-    elif theBoard['1'] == theBoard['5'] == theBoard['9'] == y:
+    elif theBoard['1'] == theBoard['5'] == theBoard['9'] == player:
         return True
     else:
         return False
