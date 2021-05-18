@@ -89,6 +89,8 @@ def computerAction():
         choice = randomAI()
     if gameMode == 'VS Computer (hard)':
         choice = minimaxAI()
+    # else:
+    #     #DO SOMETHING HERE
     print(choice)
     if choice != "Tie Game":
         window.FindElement(choice).Update(image_filename = oPiece, image_size = (100, 100), disabled = True)
@@ -152,6 +154,7 @@ def minimax(board, isMaximizing, depth = 0, maxdepth = 5):
                 currentScore = minimax(testBoard, False, depth = depth + 1, maxdepth = maxdepth)
                 if (currentScore > bestScore):
                     bestScore = currentScore
+        print("bestScore for O =", bestScore)
 
         return bestScore
 
@@ -165,7 +168,7 @@ def minimax(board, isMaximizing, depth = 0, maxdepth = 5):
                 currentScore = minimax(testBoard, True, depth = depth + 1, maxdepth = maxdepth) # Now that it is minimizing sets true,
                 if (currentScore < bestScore): # Looking for the lowest score now
                     bestScore = currentScore
-        print("bestscore for X = ", bestScore)
+        print("bestScore for X = ", bestScore)
 
         return bestScore
 
@@ -216,24 +219,30 @@ while True:
 
     # Check if a player has won,for every move after 5 moves (minimum to win).
     if turnCounter >= 5:
-            if theBoard['7'] == theBoard['8'] == theBoard['9'] != ' ': # across the top
+            # if theBoard['7'] == theBoard['8'] == theBoard['9'] != ' ': # across the top
+            #     window.FindElement('title').Update("Game Over")
+            # elif theBoard['4'] == theBoard['5'] == theBoard['6'] != ' ': # across the middle
+            #     window.FindElement('title').Update("Game Over")
+            # elif theBoard['1'] == theBoard['2'] == theBoard['3'] != ' ': # across the bottom
+            #     window.FindElement('title').Update("Game Over")
+            # elif theBoard['1'] == theBoard['4'] == theBoard['7'] != ' ': # down the left side
+            #     window.FindElement('title').Update("Game Over")
+            # elif theBoard['2'] == theBoard['5'] == theBoard['8'] != ' ': # down the middle
+            #     window.FindElement('title').Update("Game Over")
+            # elif theBoard['3'] == theBoard['6'] == theBoard['9'] != ' ': # down the right side
+            #     window.FindElement('title').Update("Game Over")
+            # elif theBoard['7'] == theBoard['5'] == theBoard['3'] != ' ': # diagonal
+            #     window.FindElement('title').Update("Game Over")
+            # elif theBoard['1'] == theBoard['5'] == theBoard['9'] != ' ': # diagonal
+            #     window.FindElement('title').Update("Game Over")
+            # # If neither X nor O wins and the board is full, we'll declare the result as 'tie'.
+            # elif turnCounter == 9:
+            #     window.FindElement('title').Update("Tie Game!")
+            #     window.FindElement('0').Update(visible=True)
+
+            if checkWhoWon('X') or checkWhoWon('O'):
                 window.FindElement('title').Update("Game Over")
-            elif theBoard['4'] == theBoard['5'] == theBoard['6'] != ' ': # across the middle
-                window.FindElement('title').Update("Game Over")
-            elif theBoard['1'] == theBoard['2'] == theBoard['3'] != ' ': # across the bottom
-                window.FindElement('title').Update("Game Over")
-            elif theBoard['1'] == theBoard['4'] == theBoard['7'] != ' ': # down the left side
-                window.FindElement('title').Update("Game Over")
-            elif theBoard['2'] == theBoard['5'] == theBoard['8'] != ' ': # down the middle
-                window.FindElement('title').Update("Game Over")
-            elif theBoard['3'] == theBoard['6'] == theBoard['9'] != ' ': # down the right side
-                window.FindElement('title').Update("Game Over")
-            elif theBoard['7'] == theBoard['5'] == theBoard['3'] != ' ': # diagonal
-                window.FindElement('title').Update("Game Over")
-            elif theBoard['1'] == theBoard['5'] == theBoard['9'] != ' ': # diagonal
-                window.FindElement('title').Update("Game Over")
-            # If neither X nor O wins and the board is full, we'll declare the result as 'tie'.
-            elif turnCounter == 9:
+            elif checkIfDraw():
                 window.FindElement('title').Update("Tie Game!")
                 window.FindElement('0').Update(visible=True)
 
