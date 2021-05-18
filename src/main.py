@@ -68,19 +68,21 @@ def printBoard(theBoard):
 def playerAction(event):
     """Function containing possible player actions, also calls for computer action"""
     global turnCounter
-    if event in ['1','2','3','4','5','6','7','8','9']:
-        if (turnCounter % 2 == 0):
-            window.FindElement(event).Update(image_filename = xPiece, image_size = (100, 100), disabled = True)
-            theBoard[event] = 'X'
-            turnCounter += 1
-            printBoard(theBoard)
+    if gameMode != "GAME OVER":
+        if event in ['1','2','3','4','5','6','7','8','9']:
+            if (turnCounter % 2 == 0):
+                window.FindElement(event).Update(image_filename = xPiece, image_size = (100, 100), disabled = True)
+                theBoard[event] = 'X'
+                turnCounter += 1
+                printBoard(theBoard)
 
-        else:
-            window.FindElement(event).Update(image_filename = oPiece, image_size = (100, 100), disabled = True)
-            theBoard[event] = 'O'
-            turnCounter = turnCounter + 1
-            printBoard(theBoard)
-        computerAction()
+            else:
+                window.FindElement(event).Update(image_filename = oPiece, image_size = (100, 100), disabled = True)
+                theBoard[event] = 'O'
+                turnCounter = turnCounter + 1
+                printBoard(theBoard)
+            if gameMode == 'VS Computer (easy)' or gameMode == 'VS Computer (hard)':
+                computerAction()
 
 def computerAction():
     """Wrapper for both types of VS AI action"""
@@ -89,8 +91,7 @@ def computerAction():
         choice = randomAI()
     if gameMode == 'VS Computer (hard)':
         choice = minimaxAI()
-    # else:
-    #     #DO SOMETHING HERE
+
     print(choice)
     if choice != "Tie Game":
         window.FindElement(choice).Update(image_filename = oPiece, image_size = (100, 100), disabled = True)
@@ -117,28 +118,34 @@ def minimaxAI():
     bestScore = -100 #a high negative number
     bestMove = "Tie Game" #does not exist yet
 
+    print(theBoard)
+
     for key in theBoard.keys():
         if (theBoard[key] == ' '):  # Checks to see if board spot is empty
             testBoard = theBoard.copy()
             testBoard[key] = 'O'    # Inputs a possible turn
+            print("test board: ", testBoard)
             currentScore = minimax(testBoard, isMaximizing = False)    # To then be tested here
             print(currentScore)
             # theBoard[key] = ' '    # Resets board spot back to empty
             if (currentScore > bestScore):
                 bestScore = currentScore  # Updates new best score
                 bestMove = key     # Updates new best move
+    print("best move: ",bestMove)
     return bestMove
 
+    
+
 # Minimax algorithm
-def minimax(board, isMaximizing, depth = 0, maxdepth = 5):
+def minimax(theBoard, isMaximizing, depth = 0, maxdepth = 10):
     """The minimax algorithm used with the above minimaxAI function"""
-    if checkWhoWon('O'):
+    if checkWhoWon('O', theBoard):
         return 10
 
-    elif checkWhoWon('X'):
+    elif checkWhoWon('X', theBoard):
         return -10
 
-    elif checkIfDraw():
+    elif checkIfDraw(theBoard):
         return 0
     
     if depth >= maxdepth:
@@ -152,9 +159,11 @@ def minimax(board, isMaximizing, depth = 0, maxdepth = 5):
                 testBoard = theBoard.copy()
                 testBoard[key] = 'O'
                 currentScore = minimax(testBoard, False, depth = depth + 1, maxdepth = maxdepth)
+                # print(depth)
+                # print("updated test board: ",testBoard)
                 if (currentScore > bestScore):
                     bestScore = currentScore
-        print("bestScore for O =", bestScore)
+        # print("bestScore for O =", bestScore)
 
         return bestScore
 
@@ -166,13 +175,16 @@ def minimax(board, isMaximizing, depth = 0, maxdepth = 5):
                 testBoard = theBoard.copy()
                 testBoard[key] = 'X'   # Tests for the potential player move
                 currentScore = minimax(testBoard, True, depth = depth + 1, maxdepth = maxdepth) # Now that it is minimizing sets true,
+                # print(depth)
+                # print("updated test board: ", testBoard)
+                # print("currentScore: ",currentScore)
                 if (currentScore < bestScore): # Looking for the lowest score now
                     bestScore = currentScore
-        print("bestScore for X = ", bestScore)
+        # print("bestScore for X = ", bestScore)
 
         return bestScore
 
-def checkWhoWon(player):
+def checkWhoWon(player, theBoard):
     """Checks to see if the given player, x or o has won"""
     if theBoard['7'] == theBoard['8'] == theBoard['9'] == player:
         return True
@@ -193,13 +205,23 @@ def checkWhoWon(player):
     else:
         return False
 
-def checkIfDraw():
+def checkIfDraw(theBoard):
     """A method that checks if the move results in a draw"""
     for key in theBoard.keys():
         if theBoard[key] == ' ':
             return False
     return True
 
+def clearBoard():
+    global theBoard, turnCounter
+    for i in range(1,10):
+            s = str(i)
+            window.FindElement(s).Update(image_filename = emptyPiece, image_size = (100, 100), disabled=False)
+    theBoard = {'7': ' ' , '8': ' ' , '9': ' ' ,
+                '4': ' ' , '5': ' ' , '6': ' ' ,
+                '1': ' ' , '2': ' ' , '3': ' ' }
+    turnCounter = 0
+    window.FindElement('title').Update("Tic-Tac-Toe")
 
 # Create an event loop while the window is open
 while True:
@@ -219,47 +241,24 @@ while True:
 
     # Check if a player has won,for every move after 5 moves (minimum to win).
     if turnCounter >= 5:
-            # if theBoard['7'] == theBoard['8'] == theBoard['9'] != ' ': # across the top
-            #     window.FindElement('title').Update("Game Over")
-            # elif theBoard['4'] == theBoard['5'] == theBoard['6'] != ' ': # across the middle
-            #     window.FindElement('title').Update("Game Over")
-            # elif theBoard['1'] == theBoard['2'] == theBoard['3'] != ' ': # across the bottom
-            #     window.FindElement('title').Update("Game Over")
-            # elif theBoard['1'] == theBoard['4'] == theBoard['7'] != ' ': # down the left side
-            #     window.FindElement('title').Update("Game Over")
-            # elif theBoard['2'] == theBoard['5'] == theBoard['8'] != ' ': # down the middle
-            #     window.FindElement('title').Update("Game Over")
-            # elif theBoard['3'] == theBoard['6'] == theBoard['9'] != ' ': # down the right side
-            #     window.FindElement('title').Update("Game Over")
-            # elif theBoard['7'] == theBoard['5'] == theBoard['3'] != ' ': # diagonal
-            #     window.FindElement('title').Update("Game Over")
-            # elif theBoard['1'] == theBoard['5'] == theBoard['9'] != ' ': # diagonal
-            #     window.FindElement('title').Update("Game Over")
-            # # If neither X nor O wins and the board is full, we'll declare the result as 'tie'.
-            # elif turnCounter == 9:
-            #     window.FindElement('title').Update("Tie Game!")
-            #     window.FindElement('0').Update(visible=True)
-
-            if checkWhoWon('X') or checkWhoWon('O'):
-                window.FindElement('title').Update("Game Over")
-            elif checkIfDraw():
-                window.FindElement('title').Update("Tie Game!")
-                window.FindElement('0').Update(visible=True)
+        if checkWhoWon('X', theBoard) or checkWhoWon('O', theBoard):
+            gameMode = "GAME OVER"
+            window.FindElement('title').Update("Game Over")
+        elif checkIfDraw(theBoard):
+            gameMode = "GAME OVER"
+            window.FindElement('title').Update("Tie Game!")
+            window.FindElement('0').Update(visible=True)
 
 
     # "CLEAR" is clicked, the entire game is reset
     if event == "CLEAR":
-        for i in range(1,10):
-            s = str(i)
-            window.FindElement(s).Update(image_filename = emptyPiece, image_size = (100, 100), disabled=False)
-        theBoard = {'7': ' ' , '8': ' ' , '9': ' ' ,
-                    '4': ' ' , '5': ' ' , '6': ' ' ,
-                    '1': ' ' , '2': ' ' , '3': ' ' }
-        turnCounter = 0
+        clearBoard()
 
     if event == "Main Menu":
+        clearBoard()
         window[f'-COL2-'].update(visible=False)
         window[f'-COL1-'].update(visible=True)
+        gameMode = "menu"
 
 
 window.close()
