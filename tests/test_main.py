@@ -3,6 +3,7 @@
 import pytest
 import runpy
 import sys
+import PySimpleGUI
 
 from src import main
 
