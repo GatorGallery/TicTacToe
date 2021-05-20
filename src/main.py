@@ -122,12 +122,11 @@ def minimaxAI():
 
     for key in theBoard.keys():
         if (theBoard[key] == ' '):  # Checks to see if board spot is empty
-            testBoard = theBoard.copy()
+            testBoard = theBoard.copy() #creates a temporary board to hold the simulation
             testBoard[key] = 'O'    # Inputs a possible turn
             print("test board: ", testBoard)
             currentScore = minimax(testBoard, isMaximizing = False)    # To then be tested here
             print(currentScore)
-            # theBoard[key] = ' '    # Resets board spot back to empty
             if (currentScore > bestScore):
                 bestScore = currentScore  # Updates new best score
                 bestMove = key     # Updates new best move
@@ -159,11 +158,8 @@ def minimax(theBoard, isMaximizing, depth = 0, maxdepth = 10):
                 testBoard = theBoard.copy()
                 testBoard[key] = 'O'
                 currentScore = minimax(testBoard, False, depth = depth + 1, maxdepth = maxdepth)
-                # print(depth)
-                # print("updated test board: ",testBoard)
                 if (currentScore > bestScore):
                     bestScore = currentScore
-        # print("bestScore for O =", bestScore)
 
         return bestScore
 
@@ -174,13 +170,9 @@ def minimax(theBoard, isMaximizing, depth = 0, maxdepth = 10):
             if (theBoard[key] == ' '):
                 testBoard = theBoard.copy()
                 testBoard[key] = 'X'   # Tests for the potential player move
-                currentScore = minimax(testBoard, True, depth = depth + 1, maxdepth = maxdepth) # Now that it is minimizing sets true,
-                # print(depth)
-                # print("updated test board: ", testBoard)
-                # print("currentScore: ",currentScore)
+                currentScore = minimax(testBoard, True, depth = depth + 1, maxdepth = maxdepth) # Now that it is minimizing sets true
                 if (currentScore < bestScore): # Looking for the lowest score now
                     bestScore = currentScore
-        # print("bestScore for X = ", bestScore)
 
         return bestScore
 
