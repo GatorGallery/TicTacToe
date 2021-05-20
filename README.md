@@ -27,3 +27,11 @@ Then to start the program run:
 ```
 python src/main.py
 ```
+
+## Alternatively, using pipenv
+
+To install dependancies run:
+
+```
+pipenv install --dev
+```
