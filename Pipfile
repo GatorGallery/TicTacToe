@@ -15,6 +15,7 @@ pytest = "*"
 pytest-cov = "*"
 pytest-sugar = "*"
 pytest-clarity = "*"
+PySimpleGUI = "*"
 
 [pipenv]
 allow_prereleases = true

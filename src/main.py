@@ -97,7 +97,7 @@ def computerAction():
         window.FindElement(choice).Update(image_filename = oPiece, image_size = (100, 100), disabled = True)
         theBoard[choice] = 'O'
         turnCounter += 1
-        
+
 
 # Random opponent turn AI
 def randomAI():
@@ -110,7 +110,7 @@ def randomAI():
         return randstr
     else:
         return "Tie Game"
-        
+
 
 # Hard opponent turn
 def minimaxAI():
@@ -133,7 +133,7 @@ def minimaxAI():
     print("best move: ",bestMove)
     return bestMove
 
-    
+
 
 # Minimax algorithm
 def minimax(theBoard, isMaximizing, depth = 0, maxdepth = 10):
@@ -146,7 +146,7 @@ def minimax(theBoard, isMaximizing, depth = 0, maxdepth = 10):
 
     elif checkIfDraw(theBoard):
         return 0
-    
+
     if depth >= maxdepth:
         return 0
 
