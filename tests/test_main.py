@@ -24,3 +24,8 @@ def test_check_randomAI():
     main.randomAI()
     assert main.turnCounter == False
 
+
+def test_check_randomAI2():
+    """Checks."""
+    main.randomAI()
+    assert main.turnCounter != True
