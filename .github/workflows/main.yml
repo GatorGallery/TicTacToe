@@ -26,11 +26,7 @@ jobs:
         pip install --upgrade pip
         pip install pipenv
         pip install coverage
-    - name: Run Test Suite
-      run: |
         pipenv install --dev
-        pipenv run pytest tests/test_main.py
-      #continue-on-error: true
       if: always()
       env:
         PIPENV_VENV_IN_PROJECT: 1
