@@ -2,6 +2,9 @@
 
 [![Actions Status](../../workflows/build/badge.svg)](../../actions)
 
+[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
+
+
 An implementation of the classic game Tic-Tac-Toe. The program is built with [Python](https://www.python.org/) and [PySimpleGUI](https://pysimplegui.readthedocs.io/en/latest/).
 
 ## Installation
@@ -64,4 +67,4 @@ Follows traditional rules of Tic-Tac-Toe
 
 To play simply use curser to select a gameboard spot and attempt to get three in a row just like any other Tic-Tac-Toe game
 
-For a challenge play against hard level AI that is designed to be unbeatable 
+For a challenge play against hard level AI that is designed to be unbeatable
