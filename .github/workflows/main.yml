@@ -26,12 +26,9 @@ jobs:
         pip install --upgrade pip
         pip install pipenv
         pip install coverage
-        pipenv install --dev
-    - name: Check pydocstyle
-      run: |
-        pipenv run pydocstyle
     - name: Run Test Suite
       run: |
+        pipenv install --dev
         pipenv run pytest tests/test_main.py
       #continue-on-error: true
       if: always()
