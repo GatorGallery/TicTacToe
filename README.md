@@ -1,6 +1,6 @@
 # Team5Project2: Tic-Tac-Toe
 
-[![Actions Status](../../workflows/build/badge.svg)](../../actions)     
+[![Build Status](https://travis-ci.org/{ORG-or-USERNAME}/{REPO-NAME}.png?branch=master)](https://travis-ci.org/{ORG-or-USERNAME}/{REPO-NAME}) 
 
 [![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org)
 
