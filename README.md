@@ -35,7 +35,7 @@ Then to start the program run:
 python src/main.py
 ```
 
-## Alternatively, using pipenv (required for Mac OS)
+## Alternatively, using pipenv (required for Mac OS and running the test suite on any platform)
 
 To install dependancies run:
 
