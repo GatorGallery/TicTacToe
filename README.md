@@ -35,3 +35,21 @@ To install dependancies run:
 ```
 pipenv install --dev
 ```
+
+To run the program:
+
+```
+pipenv run python src/main.py
+```
+
+Or use `python3` if need-be:
+
+```
+pipenv run python3 src/main.py
+```
+
+To run the test suite:
+
+```
+pipenv run pytest tests/test_main.py 
+```
