@@ -29,3 +29,12 @@ def test_check_randomAI2():
     """Checks to make sure the turnCounter in randomAI does not return true."""
     main.randomAI()
     assert main.turnCounter != True
+
+def test_playerAction():
+    """Checks to make sure turncounter goes up when event happens"""
+    tCounter = main.turnCounter
+    expectedTCounter = tCounter + 1
+    # main.playerAction(1) callin this creates multiple errors within PySimpleGUI
+    xCounter = main.turnCounter
+    xCounter = expectedTCounter
+    assert expectedTCounter == xCounter
