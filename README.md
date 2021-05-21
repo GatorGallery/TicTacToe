@@ -1,5 +1,7 @@
 # Team5Project2: Tic-Tac-Toe
 
+[![Actions Status](../../workflows/build/badge.svg)](../../actions)
+
 An implementation of the classic game Tic-Tac-Toe. The program is built with [Python](https://www.python.org/) and [PySimpleGUI](https://pysimplegui.readthedocs.io/en/latest/).
 
 ## Installation
@@ -53,5 +55,5 @@ pipenv run python3 src/main.py
 To run the test suite:
 
 ```
-pipenv run pytest tests/test_main.py 
+pipenv run pytest tests/test_main.py
 ```
