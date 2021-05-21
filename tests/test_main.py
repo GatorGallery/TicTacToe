@@ -14,7 +14,7 @@ def test_number_one():
 
 
 def test_check_minmax(depth = 0, maxdepth = 10):
-    """Checks if the minmax function retunrs 0 if depth >= maxdepth."""
+    """Checks if the minmax function returns 0 if depth >= maxdepth."""
     if depth >= maxdepth:
         assert 0
 
