@@ -4,7 +4,7 @@ An implementation of the classic game Tic-Tac-Toe. The program is built with [Py
 
 ## Installation
 
-**Note that in order to run this program on Mac OS, skip to the next section to use pipenv**
+**Note that in order to run this program on Mac OS, skip to the next section to use pipenv.**
 
 To install [PySimpleGUI](https://pysimplegui.readthedocs.io/en/latest/) run:
 
@@ -29,6 +29,8 @@ Then to start the program run:
 ```
 python src/main.py
 ```
+
+**When playing against the AI with the difficulty of hard, please exit and restart the game after each round.**
 
 ## Alternatively, using pipenv (required for Mac OS)
 
@@ -55,3 +57,4 @@ To run the test suite:
 ```
 pipenv run pytest tests/test_main.py 
 ```
+**It is required to manually run the test suite due to the nature of the GUI. Once ran, the user will need to exit the game and the test results will be outputted.**
