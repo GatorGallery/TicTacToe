@@ -17,3 +17,10 @@ def test_check_minmax(depth = 0, maxdepth = 10):
     """Checks."""
     if depth >= maxdepth:
         assert 0
+
+
+def test_check_randomAI():
+    """Checks."""
+    main.randomAI()
+    assert main.turnCounter == False
+
