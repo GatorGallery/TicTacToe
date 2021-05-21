@@ -9,23 +9,23 @@ from src import main
 
 
 def test_number_one():
-    """Checks."""
+    """Checks if the test file works properly."""
     assert 1 == 1
 
 
 def test_check_minmax(depth = 0, maxdepth = 10):
-    """Checks."""
+    """Checks if the minmax function retunrs 0 if depth >= maxdepth."""
     if depth >= maxdepth:
         assert 0
 
 
 def test_check_randomAI():
-    """Checks."""
+    """Checks if the turnCounter in the randomAI function returns false."""
     main.randomAI()
     assert main.turnCounter == False
 
 
 def test_check_randomAI2():
-    """Checks."""
+    """Checks to make sure the turnCounter in randomAI does not return true."""
     main.randomAI()
     assert main.turnCounter != True
