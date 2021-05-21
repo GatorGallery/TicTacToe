@@ -30,7 +30,7 @@ Then to start the program run:
 python src/main.py
 ```
 
-## Alternatively, using pipenv
+## Alternatively, using pipenv (required for Mac OS)
 
 To install dependancies run:
 
