@@ -57,3 +57,11 @@ To run the test suite:
 ```
 pipenv run pytest tests/test_main.py
 ```
+
+## How to play
+
+Follows traditional rules of Tic-Tac-Toe
+
+To play simply use curser to select a gameboard spot and attempt to get three in a row just like any other Tic-Tac-Toe game
+
+For a challenge play against hard level AI that is designed to be unbeatable 
