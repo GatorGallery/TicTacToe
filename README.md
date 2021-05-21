@@ -1,8 +1,6 @@
 # Team5Project2: Tic-Tac-Toe
 
-[![Actions Status](../../workflows/build/badge.svg)](../../actions)
-
-[![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org)
+[![Actions Status](../../workflows/build/badge.svg)](../../actions)     [![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org)
 
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 
