@@ -7,7 +7,7 @@
 
 An implementation of the classic game Tic-Tac-Toe. The program is built with [Python](https://www.python.org/) and [PySimpleGUI](https://pysimplegui.readthedocs.io/en/latest/).
 
-## Installation
+## Installation (For Windows)
 
 **Note that in order to run this program on Mac OS, skip to the next section to use pipenv**
 
