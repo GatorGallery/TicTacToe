@@ -4,6 +4,8 @@ An implementation of the classic game Tic-Tac-Toe. The program is built with [Py
 
 ## Installation
 
+**Note that in order to run this program on Mac OS, skip to the next section to use pipenv**
+
 To install [PySimpleGUI](https://pysimplegui.readthedocs.io/en/latest/) run:
 
 ```
